@@ -80,3 +80,8 @@ void RemoveNegativesToZeros(int32_t* array, int32_t size) {
         array[index++] = 0;
     }
 }
+
+
+double CalculateAverage(int32_t* array, int16_t arraySize) {
+    return (array[MaxElement(array, arraySize)] + array[MinElement(array, arraySize)]) * 0.5;
+}

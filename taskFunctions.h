@@ -7,6 +7,8 @@ void ChoseTypeOfElement(int32_t);
 int32_t SumOfSimpleNums(int32_t*, int32_t);
 bool IsSimple(int32_t);
 void RemoveNegativesToZeros(int32_t*, int32_t);
+double CalculateAverage(int32_t*, int16_t);
+double CalculateAverage(char*, int16_t) = delete;
 
 
 template <class type>
