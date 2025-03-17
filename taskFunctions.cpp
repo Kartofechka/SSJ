@@ -1,26 +1,26 @@
 #include "taskFunctions.h"
 
-// Функция ввода размера массива
+// Г”ГіГ­ГЄГ¶ГЁГї ГўГўГ®Г¤Г  Г°Г Г§Г¬ГҐГ°Г  Г¬Г Г±Г±ГЁГўГ 
 void InputSize(int32_t& size) {
     std::cout << "Input size of array: \n";
     std::cin >> size;
 }
 
-// Функция проверки размера массива
+// Г”ГіГ­ГЄГ¶ГЁГї ГЇГ°Г®ГўГҐГ°ГЄГЁ Г°Г Г§Г¬ГҐГ°Г  Г¬Г Г±Г±ГЁГўГ 
 bool CheckSize(int32_t size) {
     return size > 0 && size <= 100;
 }
 
-// Функция выбора типа элементов
+// Г”ГіГ­ГЄГ¶ГЁГї ГўГ»ГЎГ®Г°Г  ГІГЁГЇГ  ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
 void ChoseTypeOfElement(int32_t size) {
-    std::cout << "Выберите необходимый тип элементов:\n";
+    std::cout << "Г‚Г»ГЎГҐГ°ГЁГІГҐ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»Г© ГІГЁГЇ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў:\n";
     std::cout << "[1] - integer\n";
     std::cout << "[2] - double\n";
     std::cout << "[3] - char\n";
     std::string choosen_type{};
     std::cin >> choosen_type;
     if (choosen_type != "1" && choosen_type != "2" && choosen_type != "3") {
-        std::cout << "Неверный номер опции!\n";
+        std::cout << "ГЌГҐГўГҐГ°Г­Г»Г© Г­Г®Г¬ГҐГ° Г®ГЇГ¶ГЁГЁ!\n";
         return;
     }
 
@@ -41,7 +41,7 @@ void ChoseTypeOfElement(int32_t size) {
     }
 }
 
-// Функция нахождения простых чисел
+// Г”ГіГ­ГЄГ¶ГЁГї Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГї ГЇГ°Г®Г±ГІГ»Гµ Г·ГЁГ±ГҐГ«
 bool IsSimple(int32_t num) {
     if (num <= 1) {
         return false;
@@ -52,4 +52,34 @@ bool IsSimple(int32_t num) {
         }
     }
     return true;
+}
+
+
+// Г”ГіГ­ГЄГ¶ГЁГї Г±ГіГ¬Г¬ГЁГ°Г®ГўГ Г­ГЁГї ГЇГ°Г®Г±ГІГ»Гµ Г·ГЁГ±ГҐГ«
+int32_t SumOfSimpleNums(int32_t* arr, int32_t size) {
+    int32_t sum_of_simple{};
+    for (size_t i = 0; i < size; ++i) {
+        if (IsSimple(arr[i])) {
+            sum_of_simple += arr[i];
+        }
+    }
+    return sum_of_simple;
+}
+
+// Г”ГіГ­ГЄГ¶ГЁГї Г§Г Г¬ГҐГ­Г» Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Гµ Г­Г  Г­Г®Г«Гј
+void RemoveNegativesToZeros(int32_t* array, int32_t size) {
+    int index = 0;
+    for (int i = 0; i < size; ++i) {
+        if (array[i] >= 0) {
+            array[index++] = array[i];
+        }
+    }
+    while (index < size) {
+        array[index++] = 0;
+    }
+}
+
+
+double CalculateAverage(int32_t* array, int16_t arraySize) {
+    return (array[MaxElement(array, arraySize)] + array[MinElement(array, arraySize)]) * 0.5;
 }

@@ -2,20 +2,20 @@
 #ifndef TASKFUNCTIONS_H
 #define TASKFUNCTIONS_H
 
-// Шаблон для создания массива
+// ГГ ГЎГ«Г®Г­ Г¤Г«Гї Г±Г®Г§Г¤Г Г­ГЁГї Г¬Г Г±Г±ГЁГўГ 
 template <typename T>
 void MakeArray(T* array, size_t size) {
-	std::cout << "Введите элементы массива:\n";
+	std::cout << "Г‚ГўГҐГ¤ГЁГІГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г¬Г Г±Г±ГЁГўГ :\n";
 	for (size_t i = 0; i < size; ++i) {
 		std::cin >> array[i];
 	}
 }
 
-// Шаблон для поиска элемента в массиве
+// ГГ ГЎГ«Г®Г­ Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ  ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў Г¬Г Г±Г±ГЁГўГҐ
 template <typename T>
 int16_t FindElement(T* array, size_t size) {
 	T value{};
-	std::cout << "Введите необходимый элемент для поиска:\n";
+	std::cout << "Г‚ГўГҐГ¤ГЁГІГҐ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ :\n";
 	std::cin >> value;
 	for (size_t i = 0; i < size; ++i) {
 		if (array[i] == value) {
@@ -27,7 +27,7 @@ int16_t FindElement(T* array, size_t size) {
 
 template<typename T>
 void PrintArray(T* array, size_t size) {
-	for (size_t index = 0; index < size; ++index) {
+for (size_t index = 0; index < size; ++index) {
 		std::cout << array[index] << " ";
 	}
 	std::cout << std::endl;
@@ -79,7 +79,6 @@ void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd) {
 
 template<typename T>
 void BubbleSort(T& array, size_t size) {
-	
 	for (size_t i = 0; i < size - 1; ++i) {
 		for (size_t j = 0; j < size - 1 - i; ++j) {
 			if (array[j] > array[j + 1]) {
@@ -95,7 +94,7 @@ void ChoseTypeOfElement(int32_t);
 int32_t SumOfSimpleNums(int32_t*, int32_t);
 bool IsSimple(int32_t);
 
-// Шаблон для удаления отрицательных
+// ГГ ГЎГ«Г®Г­ Г¤Г«Гї ГіГ¤Г Г«ГҐГ­ГЁГї Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Гµ
 template <typename T>
 void RemoveNegativesToZeros(T* array , size_t size) {
 	int index = 0;
@@ -109,7 +108,7 @@ void RemoveNegativesToZeros(T* array , size_t size) {
 	}
 }
 
-// Шаблон суммирования простых чисел
+// ГГ ГЎГ«Г®Г­ Г±ГіГ¬Г¬ГЁГ°Г®ГўГ Г­ГЁГї ГЇГ°Г®Г±ГІГ»Гµ Г·ГЁГ±ГҐГ«
 template <typename T>
 int64_t SumOfSimpleNums(T* arr, size_t size) {
 	int32_t sum_of_simple{};
@@ -166,19 +165,19 @@ double CalculateAverage(type* array, size_t arraySize) {
 	return (array[MaxElement(array, arraySize)] + array[MinElement(array, arraySize)]) * 0.5;
 }
 
-// Шаблон для обработки операций с массивом
+// ГГ ГЎГ«Г®Г­ Г¤Г«Гї Г®ГЎГ°Г ГЎГ®ГІГЄГЁ Г®ГЇГҐГ°Г Г¶ГЁГ© Г± Г¬Г Г±Г±ГЁГўГ®Г¬
 template <typename T>
 void ActionsWithArrays(T* array, size_t size, int8_t code_type_array) {
-		std::cout << "Введите необходимый номер функции:\n";
-		std::cout << "[1] Вывести элементы массива на консоль \n";
-		std::cout << "[2] Поиск элемента \n";
-		std::cout << "[3] Поиска кол-ва элементов между первым и последним 0-ым элементами \n";
-		std::cout << "[4] Вывод номера максимального и минимального элемента \n";
-		std::cout << "[5] Среднее арифмитичемеого максимального и минимального элемента\n";
-		std::cout << "[6] Сумма всех простых \n";
-		std::cout << "[7] Сортировка пузырьком \n";
-		std::cout << "[8] Поменять порядок элементов массива на обратный. \n";
-		std::cout << "[9] Удалить из массива все отрицательные числа \n";
+		std::cout << "Г‚ГўГҐГ¤ГЁГІГҐ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»Г© Г­Г®Г¬ГҐГ° ГґГіГ­ГЄГ¶ГЁГЁ:\n";
+		std::cout << "[1] Г‚Г»ГўГҐГ±ГІГЁ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г¬Г Г±Г±ГЁГўГ  Г­Г  ГЄГ®Г­Г±Г®Г«Гј \n";
+		std::cout << "[2] ГЏГ®ГЁГ±ГЄ ГЅГ«ГҐГ¬ГҐГ­ГІГ  \n";
+		std::cout << "[3] ГЏГ®ГЁГ±ГЄГ  ГЄГ®Г«-ГўГ  ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬ГҐГ¦Г¤Гі ГЇГҐГ°ГўГ»Г¬ ГЁ ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ¬ 0-Г»Г¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ Г¬ГЁ \n";
+		std::cout << "[4] Г‚Г»ГўГ®Г¤ Г­Г®Г¬ГҐГ°Г  Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЁ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  \n";
+		std::cout << "[5] Г‘Г°ГҐГ¤Г­ГҐГҐ Г Г°ГЁГґГ¬ГЁГІГЁГ·ГҐГ¬ГҐГ®ГЈГ® Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЁ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ \n";
+		std::cout << "[6] Г‘ГіГ¬Г¬Г  ГўГ±ГҐГµ ГЇГ°Г®Г±ГІГ»Гµ \n";
+		std::cout << "[7] Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЇГіГ§Г»Г°ГјГЄГ®Г¬ \n";
+		std::cout << "[8] ГЏГ®Г¬ГҐГ­ГїГІГј ГЇГ®Г°ГїГ¤Г®ГЄ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬Г Г±Г±ГЁГўГ  Г­Г  Г®ГЎГ°Г ГІГ­Г»Г©. \n";
+		std::cout << "[9] Г“Г¤Г Г«ГЁГІГј ГЁГ§ Г¬Г Г±Г±ГЁГўГ  ГўГ±ГҐ Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»ГҐ Г·ГЁГ±Г«Г  \n";
 		uint8_t num_of_function = 0;
 		std::cin >> num_of_function;
 		switch (num_of_function) {
@@ -186,7 +185,7 @@ void ActionsWithArrays(T* array, size_t size, int8_t code_type_array) {
 		case '2': std::cout << FindElement(array, size); break;
 		case '3': std::cout << CountElements(array, size); break;
 		case '4': if (code_type_array != 0) {
-			std::cout << "Не поддерживаемый тип массива\n";
+			std::cout << "ГЌГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬Г»Г© ГІГЁГЇ Г¬Г Г±Г±ГЁГўГ \n";
 		}
 				else {
 			std::cout << MaxElement(array, size);
@@ -194,39 +193,38 @@ void ActionsWithArrays(T* array, size_t size, int8_t code_type_array) {
 		}
 				break;
 		case '5': if (code_type_array != 0) {
-			std::cout << "Не поддерживаемый тип массива\n";
+			std::cout << "ГЌГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬Г»Г© ГІГЁГЇ Г¬Г Г±Г±ГЁГўГ \n";
 		}
 				else {
 			std::cout << CalculateAverage(array, size);
 		}
 				break;
 		case '6': if (code_type_array != 0) {
-			std::cout << "Не поддерживаемый тип массива\n";
+			std::cout << "ГЌГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬Г»Г© ГІГЁГЇ Г¬Г Г±Г±ГЁГўГ \n";
 		}
 				else {
 			std::cout << SumOfSimpleNums(array, size);
 		}
 				break;
 		case '7': BubbleSort(array, size);
-				  std::cout << "Массив после сортировки:\n";
+				  std::cout << "ГЊГ Г±Г±ГЁГў ГЇГ®Г±Г«ГҐ Г±Г®Г°ГІГЁГ°Г®ГўГЄГЁ:\n";
 				  PrintArray(array, size);
 				  break;
 		case '8': ArrayReverse(array, size);
-				  std::cout << "Массив после реверса:\n";
+				  std::cout << "ГЊГ Г±Г±ГЁГў ГЇГ®Г±Г«ГҐ Г°ГҐГўГҐГ°Г±Г :\n";
 				  PrintArray(array, size);
 				  break;
 		case '9': if (code_type_array == 2) {
-			std::cout << "Не поддерживаемый тип массива:\n";
+			std::cout << "ГЌГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬Г»Г© ГІГЁГЇ Г¬Г Г±Г±ГЁГўГ :\n";
 		}
 				else {
 			RemoveNegativesToZeros(array, size);
-			std::cout << "Массив после замена отрицательных:\n";
+			std::cout << "ГЊГ Г±Г±ГЁГў ГЇГ®Г±Г«ГҐ Г§Г Г¬ГҐГ­Г  Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Гµ:\n";
 			PrintArray(array, size);
 			break;
 		}
 		default:
-			std::cout << "Неверно заданный параметр\n";
+			std::cout << "ГЌГҐГўГҐГ°Г­Г® Г§Г Г¤Г Г­Г­Г»Г© ГЇГ Г°Г Г¬ГҐГІГ°\n";
 		}
 }
-
 #endif
