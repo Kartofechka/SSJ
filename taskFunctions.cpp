@@ -1,28 +1,5 @@
 #include "taskFunctions.h"
 
-// Шаблон для создания массива
-template <typename T>
-void MakeArray(T* array, size_t size) {
-    std::cout << "Введите элементы массива:\n";
-    for (size_t i = 0; i < size; ++i) {
-        std::cin >> array[i];
-    }
-}
-
-// Шаблон для поиска элемента в массиве
-template <typename T>
-int FindElement(T* array, size_t size) {
-    T value{};
-    std::cout << "Введите необходимый элемент для поиска:\n";
-    std::cin >> value;
-    for (size_t i = 0; i < size; ++i) {
-        if (array[i] == value) {
-            return i;
-        }
-    }
-    return -1;
-}
-
 // Функция ввода размера массива
 void InputSize(int32_t& size) {
     std::cout << "Input size of array: \n";
@@ -102,4 +79,9 @@ void RemoveNegativesToZeros(int32_t* array, int32_t size) {
     while (index < size) {
         array[index++] = 0;
     }
+}
+
+
+double CalculateAverage(int32_t* array, int16_t arraySize) {
+    return (array[MaxElement(array, arraySize)] + array[MinElement(array, arraySize)]) * 0.5;
 }
