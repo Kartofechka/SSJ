@@ -10,6 +10,7 @@ int main() {
         return 1;
     }
     ChoseTypeOfElement(size);
+    
     return 0;
 }
 
