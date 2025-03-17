@@ -40,6 +40,20 @@ int16_t MinElement(type* array, int16_t arraySize) {
 	return minElementIndex;
 }
 
+
+int16_t const MAX_ARRAY_SIZE{ 20 };
+
+template <class type>
+void ArrayReverse(type* array, int16_t arraySize) {
+	type tempArray[MAX_ARRAY_SIZE]{};
+	for (int16_t i{}; i < arraySize; ++i) {
+		tempArray[i] = array[arraySize - i - 1];
+	}
+	for (int16_t j{}; j < arraySize; ++j) {
+		array[j] = tempArray[j];
+	}
+}
+
 // Шаблон для создания массива
 template <typename T>
 void MakeArray(T* array, size_t size) {
