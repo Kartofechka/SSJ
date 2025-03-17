@@ -1,28 +1,5 @@
 #include "taskFunctions.h"
 
-// Шаблон для создания массива
-template <typename T>
-void MakeArray(T* array, size_t size) {
-    std::cout << "Введите элементы массива:\n";
-    for (size_t i = 0; i < size; ++i) {
-        std::cin >> array[i];
-    }
-}
-
-// Шаблон для поиска элемента в массиве
-template <typename T>
-int FindElement(T* array, size_t size) {
-    T value{};
-    std::cout << "Введите необходимый элемент для поиска:\n";
-    std::cin >> value;
-    for (size_t i = 0; i < size; ++i) {
-        if (array[i] == value) {
-            return i;
-        }
-    }
-    return -1;
-}
-
 // Функция ввода размера массива
 void InputSize(int32_t& size) {
     std::cout << "Input size of array: \n";
@@ -50,20 +27,17 @@ void ChoseTypeOfElement(int32_t size) {
     if (choosen_type == "1") {
         int32_t arr[100]{};
         MakeArray(arr, size);
-        std::cout << "Сумма простых чисел = ";
-        std::cout << SumOfSimpleNums(arr, size) << '\n';
-        std::cout << "Индекс найденного элемента = " << FindElement(arr, size) << '\n';
-        RemoveNegativesToZeros(arr, size);
+        ActionsWithArrays(arr, size, 0);
     }
     else if (choosen_type == "2") {
         double arr[100]{};
         MakeArray(arr, size);
-        std::cout << "Индекс найденного элемента = " << FindElement(arr, size) << '\n';
+        ActionsWithArrays(arr, size, 1);
     }
     else {
         char arr[100]{};
         MakeArray(arr, size);
-        std::cout << "Индекс найденного элемента = " << FindElement(arr, size) << '\n';
+        ActionsWithArrays(arr, size, 2);
     }
 }
 
@@ -78,28 +52,4 @@ bool IsSimple(int32_t num) {
         }
     }
     return true;
-}
-
-// Функция суммирования простых чисел
-int32_t SumOfSimpleNums(int32_t* arr, int32_t size) {
-    int32_t sum_of_simple{};
-    for (size_t i = 0; i < size; ++i) {
-        if (IsSimple(arr[i])) {
-            sum_of_simple += arr[i];
-        }
-    }
-    return sum_of_simple;
-}
-
-// Функция замены отрицательных на ноль
-void RemoveNegativesToZeros(int32_t* array, int32_t size) {
-    int index = 0;
-    for (int i = 0; i < size; ++i) {
-        if (array[i] >= 0) {
-            array[index++] = array[i];
-        }
-    }
-    while (index < size) {
-        array[index++] = 0;
-    }
 }
