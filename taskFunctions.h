@@ -11,14 +11,17 @@ void MakeArray(T* array, size_t size) {
 	}
 }
 
+template <typename T>
+void InputElementForSearch(T& element) {
+	std::cout << "Введите элемент для поиска\n";
+	std::cin >> element;
+}
+
 // Шаблон для поиска элемента в массиве
 template <typename T>
-int16_t FindElement(T* array, size_t size) {
-	T value{};
-	std::cout << "Введите необходимый элемент для поиска:\n";
-	std::cin >> value;
+int16_t FindElement(T* array, size_t size, T element) {
 	for (size_t i = 0; i < size; ++i) {
-		if (array[i] == value) {
+		if (array[i] == element) {
 			return i;
 		}
 	}
@@ -34,31 +37,15 @@ void PrintArray(T* array, size_t size) {
 }
 
 
-template<typename T>
-void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd);
+//template<typename T>
+//void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd);
+//
+//template<typename T>
+//void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd);
 
 template<typename T>
-void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd);
-
-
-template<typename T>
-int32_t CountElements(T* array, int32_t size) {
+void FindFirstZeroIndex(T* array, int32_t size ) {
 	int32_t firstZeroInd{ -1 };
-	int32_t lastZeroInd{ -1 };
-
-	FindFirstZeroIndex(array, size, firstZeroInd);
-	FindLastZeroIndex(array, size, lastZeroInd);
-
-	if (firstZeroInd == lastZeroInd) {
-		return -1;
-	}
-	else {
-		return lastZeroInd - firstZeroInd - 1;
-	}
-}
-
-template<typename T>
-void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd) {
 	for (size_t i = 0; i < size; ++i) {
 		if (static_cast<int32_t>(array[i]) == 48 || array[i] == 0) {
 			firstZeroInd = i;
@@ -69,13 +56,32 @@ void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd) {
 
 template<typename T>
 void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd) {
-	for (int32_t i = (size-1); i > -1; --i) {
+	for (int32_t i = (size - 1); i > -1; --i) {
 		if (static_cast<int32_t>(array[i]) == 48 || array[i] == 0) {
 			lastZeroInd = i;
 			break;
 		}
 	}
 }
+
+template<typename T>
+int32_t CountElements(T* array, int32_t size) {
+	int32_t firstZeroInd{ -1 };
+	int32_t lastZeroInd{ -1 };
+
+	FindFirstZeroIndex(array, size, firstZeroInd);
+	FindLastZeroIndex(array, size, lastZeroInd);
+
+
+
+	if (firstZeroInd == lastZeroInd) {
+		return -1;
+	}
+	else {
+		return lastZeroInd - firstZeroInd - 1;
+	}
+}
+
 
 template<typename T>
 void BubbleSort(T& array, size_t size) {
@@ -140,9 +146,8 @@ template <class type>
 int32_t MinElement(type* array, size_t arraySize) {
 	int32_t minElementIndex{};
 	type minElement{ array[0] };
-	int32_t index{};
-	while (index < arraySize) {
-		if (array[++index] < minElement) {
+	for (int32_t index{ 1 }; index < arraySize; ++index) {
+		if (array[index] < minElement) {
 			minElement = array[index];
 			minElementIndex = index;
 		}
@@ -152,13 +157,13 @@ int32_t MinElement(type* array, size_t arraySize) {
 
 template <class type>
 void ArrayReverse(type* array, int16_t arraySize) {
-	type tempArray[100]{};
+	/*type tempArray[100]{};
 	for (int16_t i{}; i < arraySize; ++i) {
 		tempArray[i] = array[arraySize - i - 1];
 	}
 	for (int16_t j{}; j < arraySize; ++j) {
 		array[j] = tempArray[j];
-	}
+	}*/
 }
 
 template <class type>
@@ -183,7 +188,10 @@ void ActionsWithArrays(T* array, size_t size, int8_t code_type_array) {
 		std::cin >> num_of_function;
 		switch (num_of_function) {
 		case '1': PrintArray(array, size); break;
-		case '2': std::cout << FindElement(array, size); break;
+		case '2': 
+		T element{};
+		InputElementForSearch(element);
+		std::cout << FindElement(array, size, element); break;
 		case '3': std::cout << CountElements(array, size); break;
 		case '4': if (code_type_array != 0) {
 			std::cout << "Не поддерживаемый тип массива\n";
