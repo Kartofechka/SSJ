@@ -2,23 +2,26 @@
 #ifndef TASKFUNCTIONS_H
 #define TASKFUNCTIONS_H
 
-// ГГ ГЎГ«Г®Г­ Г¤Г«Гї Г±Г®Г§Г¤Г Г­ГЁГї Г¬Г Г±Г±ГЁГўГ 
+// Шаблон для создания массива
 template <typename T>
 void MakeArray(T* array, size_t size) {
-	std::cout << "Г‚ГўГҐГ¤ГЁГІГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г¬Г Г±Г±ГЁГўГ :\n";
+	std::cout << "Введите элементы массива:\n";
 	for (size_t i = 0; i < size; ++i) {
 		std::cin >> array[i];
 	}
 }
 
-// ГГ ГЎГ«Г®Г­ Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ  ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў Г¬Г Г±Г±ГЁГўГҐ
 template <typename T>
-int16_t FindElement(T* array, size_t size) {
-	T value{};
-	std::cout << "Г‚ГўГҐГ¤ГЁГІГҐ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ :\n";
-	std::cin >> value;
+void InputElementForSearch(T& element) {
+	std::cout << "Введите элемент для поиска\n";
+	std::cin >> element;
+}
+
+// Шаблон для поиска элемента в массиве
+template <typename T>
+int16_t FindElement(T* array, size_t size, T element) {
 	for (size_t i = 0; i < size; ++i) {
-		if (array[i] == value) {
+		if (array[i] == element) {
 			return i;
 		}
 	}
@@ -27,38 +30,22 @@ int16_t FindElement(T* array, size_t size) {
 
 template<typename T>
 void PrintArray(T* array, size_t size) {
-for (size_t index = 0; index < size; ++index) {
+	for (size_t index = 0; index < size; ++index) {
 		std::cout << array[index] << " ";
 	}
 	std::cout << std::endl;
 }
 
 
-template<typename T>
-void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd);
+//template<typename T>
+//void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd);
+//
+//template<typename T>
+//void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd);
 
 template<typename T>
-void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd);
-
-
-template<typename T>
-int32_t CountElements(T* array, int32_t size) {
+void FindFirstZeroIndex(T* array, int32_t size ) {
 	int32_t firstZeroInd{ -1 };
-	int32_t lastZeroInd{ -1 };
-
-	FindFirstZeroIndex(array, size, firstZeroInd);
-	FindLastZeroIndex(array, size, lastZeroInd);
-
-	if (firstZeroInd == lastZeroInd) {
-		return -1;
-	}
-	else {
-		return lastZeroInd - firstZeroInd - 1;
-	}
-}
-
-template<typename T>
-void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd) {
 	for (size_t i = 0; i < size; ++i) {
 		if (static_cast<int32_t>(array[i]) == 48 || array[i] == 0) {
 			firstZeroInd = i;
@@ -69,7 +56,7 @@ void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd) {
 
 template<typename T>
 void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd) {
-	for (int32_t i = (size-1); i > -1; --i) {
+	for (int32_t i = (size - 1); i > -1; --i) {
 		if (static_cast<int32_t>(array[i]) == 48 || array[i] == 0) {
 			lastZeroInd = i;
 			break;
@@ -78,7 +65,27 @@ void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd) {
 }
 
 template<typename T>
+int32_t CountElements(T* array, int32_t size) {
+	int32_t firstZeroInd{ -1 };
+	int32_t lastZeroInd{ -1 };
+
+	FindFirstZeroIndex(array, size, firstZeroInd);
+	FindLastZeroIndex(array, size, lastZeroInd);
+
+
+
+	if (firstZeroInd == lastZeroInd) {
+		return -1;
+	}
+	else {
+		return lastZeroInd - firstZeroInd - 1;
+	}
+}
+
+
+template<typename T>
 void BubbleSort(T& array, size_t size) {
+	
 	for (size_t i = 0; i < size - 1; ++i) {
 		for (size_t j = 0; j < size - 1 - i; ++j) {
 			if (array[j] > array[j + 1]) {
@@ -94,7 +101,7 @@ void ChoseTypeOfElement(int32_t);
 int32_t SumOfSimpleNums(int32_t*, int32_t);
 bool IsSimple(int32_t);
 
-// ГГ ГЎГ«Г®Г­ Г¤Г«Гї ГіГ¤Г Г«ГҐГ­ГЁГї Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Гµ
+// Шаблон для удаления отрицательных
 template <typename T>
 void RemoveNegativesToZeros(T* array , size_t size) {
 	int index = 0;
@@ -108,7 +115,7 @@ void RemoveNegativesToZeros(T* array , size_t size) {
 	}
 }
 
-// ГГ ГЎГ«Г®Г­ Г±ГіГ¬Г¬ГЁГ°Г®ГўГ Г­ГЁГї ГЇГ°Г®Г±ГІГ»Гµ Г·ГЁГ±ГҐГ«
+// Шаблон суммирования простых чисел
 template <typename T>
 int64_t SumOfSimpleNums(T* arr, size_t size) {
 	int32_t sum_of_simple{};
@@ -139,9 +146,8 @@ template <class type>
 int32_t MinElement(type* array, size_t arraySize) {
 	int32_t minElementIndex{};
 	type minElement{ array[0] };
-	int32_t index{};
-	while (index < arraySize) {
-		if (array[++index] < minElement) {
+	for (int32_t index{ 1 }; index < arraySize; ++index) {
+		if (array[index] < minElement) {
 			minElement = array[index];
 			minElementIndex = index;
 		}
@@ -151,13 +157,13 @@ int32_t MinElement(type* array, size_t arraySize) {
 
 template <class type>
 void ArrayReverse(type* array, int16_t arraySize) {
-	type tempArray[100]{};
+	/*type tempArray[100]{};
 	for (int16_t i{}; i < arraySize; ++i) {
 		tempArray[i] = array[arraySize - i - 1];
 	}
 	for (int16_t j{}; j < arraySize; ++j) {
 		array[j] = tempArray[j];
-	}
+	}*/
 }
 
 template <class type>
@@ -165,27 +171,30 @@ double CalculateAverage(type* array, size_t arraySize) {
 	return (array[MaxElement(array, arraySize)] + array[MinElement(array, arraySize)]) * 0.5;
 }
 
-// ГГ ГЎГ«Г®Г­ Г¤Г«Гї Г®ГЎГ°Г ГЎГ®ГІГЄГЁ Г®ГЇГҐГ°Г Г¶ГЁГ© Г± Г¬Г Г±Г±ГЁГўГ®Г¬
+// Шаблон для обработки операций с массивом
 template <typename T>
 void ActionsWithArrays(T* array, size_t size, int8_t code_type_array) {
-		std::cout << "Г‚ГўГҐГ¤ГЁГІГҐ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»Г© Г­Г®Г¬ГҐГ° ГґГіГ­ГЄГ¶ГЁГЁ:\n";
-		std::cout << "[1] Г‚Г»ГўГҐГ±ГІГЁ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г¬Г Г±Г±ГЁГўГ  Г­Г  ГЄГ®Г­Г±Г®Г«Гј \n";
-		std::cout << "[2] ГЏГ®ГЁГ±ГЄ ГЅГ«ГҐГ¬ГҐГ­ГІГ  \n";
-		std::cout << "[3] ГЏГ®ГЁГ±ГЄГ  ГЄГ®Г«-ГўГ  ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬ГҐГ¦Г¤Гі ГЇГҐГ°ГўГ»Г¬ ГЁ ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ¬ 0-Г»Г¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ Г¬ГЁ \n";
-		std::cout << "[4] Г‚Г»ГўГ®Г¤ Г­Г®Г¬ГҐГ°Г  Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЁ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  \n";
-		std::cout << "[5] Г‘Г°ГҐГ¤Г­ГҐГҐ Г Г°ГЁГґГ¬ГЁГІГЁГ·ГҐГ¬ГҐГ®ГЈГ® Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЁ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ \n";
-		std::cout << "[6] Г‘ГіГ¬Г¬Г  ГўГ±ГҐГµ ГЇГ°Г®Г±ГІГ»Гµ \n";
-		std::cout << "[7] Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЇГіГ§Г»Г°ГјГЄГ®Г¬ \n";
-		std::cout << "[8] ГЏГ®Г¬ГҐГ­ГїГІГј ГЇГ®Г°ГїГ¤Г®ГЄ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬Г Г±Г±ГЁГўГ  Г­Г  Г®ГЎГ°Г ГІГ­Г»Г©. \n";
-		std::cout << "[9] Г“Г¤Г Г«ГЁГІГј ГЁГ§ Г¬Г Г±Г±ГЁГўГ  ГўГ±ГҐ Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»ГҐ Г·ГЁГ±Г«Г  \n";
+		std::cout << "Введите необходимый номер функции:\n";
+		std::cout << "[1] Вывести элементы массива на консоль \n";
+		std::cout << "[2] Поиск элемента \n";
+		std::cout << "[3] Поиска кол-ва элементов между первым и последним 0-ым элементами \n";
+		std::cout << "[4] Вывод номера максимального и минимального элемента \n";
+		std::cout << "[5] Среднее арифмитичемеого максимального и минимального элемента\n";
+		std::cout << "[6] Сумма всех простых \n";
+		std::cout << "[7] Сортировка пузырьком \n";
+		std::cout << "[8] Поменять порядок элементов массива на обратный. \n";
+		std::cout << "[9] Удалить из массива все отрицательные числа \n";
 		uint8_t num_of_function = 0;
 		std::cin >> num_of_function;
 		switch (num_of_function) {
 		case '1': PrintArray(array, size); break;
-		case '2': std::cout << FindElement(array, size); break;
+		case '2': 
+		T element{};
+		InputElementForSearch(element);
+		std::cout << FindElement(array, size, element); break;
 		case '3': std::cout << CountElements(array, size); break;
 		case '4': if (code_type_array != 0) {
-			std::cout << "ГЌГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬Г»Г© ГІГЁГЇ Г¬Г Г±Г±ГЁГўГ \n";
+			std::cout << "Не поддерживаемый тип массива\n";
 		}
 				else {
 			std::cout << MaxElement(array, size);
@@ -193,38 +202,39 @@ void ActionsWithArrays(T* array, size_t size, int8_t code_type_array) {
 		}
 				break;
 		case '5': if (code_type_array != 0) {
-			std::cout << "ГЌГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬Г»Г© ГІГЁГЇ Г¬Г Г±Г±ГЁГўГ \n";
+			std::cout << "Не поддерживаемый тип массива\n";
 		}
 				else {
 			std::cout << CalculateAverage(array, size);
 		}
 				break;
 		case '6': if (code_type_array != 0) {
-			std::cout << "ГЌГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬Г»Г© ГІГЁГЇ Г¬Г Г±Г±ГЁГўГ \n";
+			std::cout << "Не поддерживаемый тип массива\n";
 		}
 				else {
 			std::cout << SumOfSimpleNums(array, size);
 		}
 				break;
 		case '7': BubbleSort(array, size);
-				  std::cout << "ГЊГ Г±Г±ГЁГў ГЇГ®Г±Г«ГҐ Г±Г®Г°ГІГЁГ°Г®ГўГЄГЁ:\n";
+				  std::cout << "Массив после сортировки:\n";
 				  PrintArray(array, size);
 				  break;
 		case '8': ArrayReverse(array, size);
-				  std::cout << "ГЊГ Г±Г±ГЁГў ГЇГ®Г±Г«ГҐ Г°ГҐГўГҐГ°Г±Г :\n";
+				  std::cout << "Массив после реверса:\n";
 				  PrintArray(array, size);
 				  break;
 		case '9': if (code_type_array == 2) {
-			std::cout << "ГЌГҐ ГЇГ®Г¤Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬Г»Г© ГІГЁГЇ Г¬Г Г±Г±ГЁГўГ :\n";
+			std::cout << "Не поддерживаемый тип массива:\n";
 		}
 				else {
 			RemoveNegativesToZeros(array, size);
-			std::cout << "ГЊГ Г±Г±ГЁГў ГЇГ®Г±Г«ГҐ Г§Г Г¬ГҐГ­Г  Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Гµ:\n";
+			std::cout << "Массив после замена отрицательных:\n";
 			PrintArray(array, size);
 			break;
 		}
 		default:
-			std::cout << "ГЌГҐГўГҐГ°Г­Г® Г§Г Г¤Г Г­Г­Г»Г© ГЇГ Г°Г Г¬ГҐГІГ°\n";
+			std::cout << "Неверно заданный параметр\n";
 		}
 }
+
 #endif
