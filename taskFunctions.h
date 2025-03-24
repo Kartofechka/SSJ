@@ -12,13 +12,10 @@ double CalculateAverage(char*, int16_t) = delete;
 
 
 template <class type>
-int16_t MaxElement(type* array, int16_t arraySize) {
-	int16_t maxElementIndex{};
-	int32_t maxElement{ array[0] };
-	int16_t index{};
-	while (index < arraySize) {
-		if (array[++index] > maxElement) {
-			maxElement = array[index];
+size_t MaxElement(type* array, int16_t arraySize) {
+	size_t maxElementIndex{};
+	for (size_t index{ 1 }; index < arraySize; ++index) {
+		if (array[index] > array[maxElementIndex]) {
 			maxElementIndex = index;
 		}
 	}
@@ -27,13 +24,10 @@ int16_t MaxElement(type* array, int16_t arraySize) {
 
 
 template <class type>
-int16_t MinElement(type* array, int16_t arraySize) {
-	int16_t minElementIndex{};
-	int32_t minElement{ array[0] };
-	int16_t index{};
-	while (index < arraySize) {
-		if (array[++index] < minElement) {
-			minElement = array[index];
+size_t MinElement(type* array, int16_t arraySize) {
+	size_t minElementIndex{};
+	for (size_t index{ 1 }; index < arraySize; ++index) {
+		if (array[index] < array[minElementIndex]) {
 			minElementIndex = index;
 		}
 	}
@@ -41,20 +35,23 @@ int16_t MinElement(type* array, int16_t arraySize) {
 }
 
 
-int16_t const MAX_ARRAY_SIZE{ 20 };
 
 template <class type>
 void ArrayReverse(type* array, int16_t arraySize) {
-	type tempArray[MAX_ARRAY_SIZE]{};
-	for (int16_t i{}; i < arraySize; ++i) {
-		tempArray[i] = array[arraySize - i - 1];
-	}
-	for (int16_t j{}; j < arraySize; ++j) {
-		array[j] = tempArray[j];
+	size_t swapArraySize{};
+	swapArraySize = arraySize * 0.5;
+	for (size_t index{}; index < swapArraySize; ++index) {
+		std::swap(array[index], array[arraySize - index - 1]);
 	}
 }
 
-// Шаблон для создания массива
+
+template <class type>
+double CalculateAverage(type* array, size_t arraySize) {
+	return (array[MaxElement(array, arraySize)] + array[MinElement(array, arraySize)]) * 0.5;
+}
+
+// Шаблон для обработки операций с массивом
 template <typename T>
 void MakeArray(T* array, size_t size) {
     std::cout << "Введите элементы массива:\n";
