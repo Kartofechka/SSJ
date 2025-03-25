@@ -37,42 +37,37 @@ void PrintArray(T* array, size_t size) {
 }
 
 
-//template<typename T>
-//void FindFirstZeroIndex(T* array, int32_t size, int32_t& firstZeroInd);
-//
-//template<typename T>
-//void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd);
-
 template<typename T>
-void FindFirstZeroIndex(T* array, int32_t size ) {
+int32_t FindFirstZeroIndex(T* array, int32_t size) {
 	int32_t firstZeroInd{ -1 };
 	for (size_t i = 0; i < size; ++i) {
-		if (static_cast<int32_t>(array[i]) == 48 || array[i] == 0) {
+		if (array[i] == 0 || array[i] == '0') {
 			firstZeroInd = i;
-			break;
+			return firstZeroInd;
 		}
 	}
+	return -1;
 }
 
+
 template<typename T>
-void FindLastZeroIndex(T* array, int32_t size, int32_t& lastZeroInd) {
+int32_t FindLastZeroIndex(T* array, int32_t size) {
+	int32_t lastZeroInd{ -1 };
 	for (int32_t i = (size - 1); i > -1; --i) {
-		if (static_cast<int32_t>(array[i]) == 48 || array[i] == 0) {
+		if (array[i] == 0 || array[i] == '0') {
 			lastZeroInd = i;
-			break;
+			return lastZeroInd;
 		}
 	}
+	return -1;
 }
+
 
 template<typename T>
 int32_t CountElements(T* array, int32_t size) {
-	int32_t firstZeroInd{ -1 };
-	int32_t lastZeroInd{ -1 };
 
-	FindFirstZeroIndex(array, size, firstZeroInd);
-	FindLastZeroIndex(array, size, lastZeroInd);
-
-
+	int32_t firstZeroInd = FindFirstZeroIndex(array, size);
+	int32_t lastZeroInd = FindLastZeroIndex(array, size);
 
 	if (firstZeroInd == lastZeroInd) {
 		return -1;
@@ -238,6 +233,4 @@ void ActionsWithArrays(T* array, size_t size, int8_t code_type_array) {
 			std::cout << "Íåâåðíî çàäàííûé ïàðàìåòð\n";
 		}
 }
-
-
 #endif
