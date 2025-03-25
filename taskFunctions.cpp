@@ -1,5 +1,6 @@
 #include "taskFunctions.h"
 
+
 // Ôóíêöèÿ ââîäà ðàçìåðà ìàññèâà
 void InputSize(int32_t& size) {
     std::cout << "Input size of array: \n";
